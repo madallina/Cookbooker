@@ -192,6 +192,14 @@ body {
 .recipe-link{
   margin: 1.4rem 0;
 }
+.notFound{
+  grid-template-columns: 1fr!important;
+  color:rgb(235, 98, 6);
+  font-size: 1.5rem;
+  font-weight: 600;
+  width:100%;
+
+}
 .recipe-link a{
   color:#fff;
   font-size: 1.2rem;

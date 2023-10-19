@@ -28,6 +28,9 @@ function getMealList() {
                 </div>
               </div>`;
         });
+      }else{
+        html="Sorry , we disn't find any meal!";
+        mealList.classList.add('notFound');
       }
       mealList.innerHTML=html;
     });
