@@ -5,6 +5,7 @@ const recipeCloseBtn = document.getElementById("recipe-close-btn");
 
 //event listeners
 searchBtn.addEventListener("click", getMealList);
+mealList.addEventListener("click", getMealRecipe);
 
 
 //functions
@@ -28,6 +29,7 @@ function getMealList() {
                 </div>
               </div>`;
         });
+        mealList.classList.remove('notFound');
       }else{
         html="Sorry , we disn't find any meal!";
         mealList.classList.add('notFound');
@@ -35,3 +37,15 @@ function getMealList() {
       mealList.innerHTML=html;
     });
 }
+
+function getMealRecipe(e){
+e.preventDefault();
+if(e.target.classList.contains("recipe-btn")){
+  let mealItem=e.target.parentElement.parentElement;
+  fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealItem.dataset.id}`)
+  .then(response=>response.json())
+  .then(data=>mealRecipeModal(data.meals))
+}
+}
+
+
