@@ -7,7 +7,6 @@ const recipeCloseBtn = document.getElementById("recipe-close-btn");
 searchBtn.addEventListener("click", getMealList);
 mealList.addEventListener("click", getMealRecipe);
 
-
 //functions
 function getMealList() {
   let searchInputTxt = document.getElementById("search-input").value.trim();
@@ -29,23 +28,41 @@ function getMealList() {
                 </div>
               </div>`;
         });
-        mealList.classList.remove('notFound');
-      }else{
-        html="Sorry , we disn't find any meal!";
-        mealList.classList.add('notFound');
+        mealList.classList.remove("notFound");
+      } else {
+        html = "Sorry , we disn't find any meal!";
+        mealList.classList.add("notFound");
       }
-      mealList.innerHTML=html;
+      mealList.innerHTML = html;
     });
 }
 
-function getMealRecipe(e){
-e.preventDefault();
-if(e.target.classList.contains("recipe-btn")){
-  let mealItem=e.target.parentElement.parentElement;
-  fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealItem.dataset.id}`)
-  .then(response=>response.json())
-  .then(data=>mealRecipeModal(data.meals))
-}
+function getMealRecipe(e) {
+  e.preventDefault();
+  if (e.target.classList.contains("recipe-btn")) {
+    let mealItem = e.target.parentElement.parentElement;
+    fetch(
+      `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealItem.dataset.id}`
+    )
+      .then((response) => response.json())
+      .then((data) => mealRecipeModal(data.meals));
+  }
 }
 
-
+function mealRecipeModal(meal) {
+  console.log(meal);
+  meal = meal[0];
+  let html = `<h2 class="recipe-title">${meal.strMeal}</h2> 
+  <p class="recipe-category">${meal.strCategory}</p>
+  <div class="recipe-intruct"></div>
+  <h3>Instructions:</h3>
+  <p>${meal.strInstructions}</p>
+  <div class="recipe-meal-img">
+    <img src="${meal.strMealThumb}" alt="" />
+  </div>
+  <div class="recipe-link">
+    <a href="${meal.strYoutube}" target="_blank">Watch Video</a>
+  </div>`;
+  mealDetailsContent.innerHTML=html;
+  mealDetailsContent.parentElement.classList.add('showRecipe');
+}
