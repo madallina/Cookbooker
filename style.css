@@ -138,7 +138,7 @@ body {
 .meal-details-content{
   margin: 2rem;
 }
-.meal-details-content p:not(.recipe){
+.meal-details-content p:not(.recipe-category){
   padding: 1rem 0;
 }
 

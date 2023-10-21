@@ -6,6 +6,9 @@ const recipeCloseBtn = document.getElementById("recipe-close-btn");
 //event listeners
 searchBtn.addEventListener("click", getMealList);
 mealList.addEventListener("click", getMealRecipe);
+recipeCloseBtn.addEventListener("click",()=>{
+  mealDetailsContent.parentElement.classList.remove('showRecipe');
+})
 
 //functions
 function getMealList() {
